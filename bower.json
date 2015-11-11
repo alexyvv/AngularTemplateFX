@@ -1,0 +1,14 @@
+{
+  "name": "AFX web console",
+  "description": "AFX web console",
+  "version": "0.0.1",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.4.6",
+    "angular-route": "^1.4.6",
+    "angular-loader": "^1.4.6",
+    "angular-mocks": "^1.4.6",
+    "material-design-lite": "~1.0.6"
+  }
+}

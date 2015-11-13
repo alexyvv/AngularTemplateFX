@@ -6484,13 +6484,11 @@ input.mdl-button[type="submit"] {
       @media screen and (max-width: 1024px) {
         .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
           padding: 16px 16px; } }
-
       .mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
         background-color: rgb(224,224,224); }
       .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
         background-color: rgb(0,0,0);
         color: rgb(224,224,224); }
-
   @media screen and (min-width: 1025px) {
     .mdl-layout--fixed-drawer > .mdl-layout__drawer {
       -webkit-transform: translateX(0);

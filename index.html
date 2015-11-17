@@ -1,131 +1,91 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="en" ng-app="afxConsole">
   <head>
     <meta charset="utf-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="AFX admin console">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <title>AFX</title>
-    <link rel="stylesheet" href="bower_components/material-design-lite/material.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alfa forex</title>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <!-- Импорты  -->
-    <script src="bower_components/material-design-lite/material.min.js"></script>
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="bower_components/material-design-lite/material.min.js"></script>
-    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <link rel="stylesheet" href="themes/material/bower_components/material-design-lite/material.css">
+    <link rel="stylesheet" href="themes/material/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="themes/material/styles.css">
+
+    <script src="themes/material/bower_components/angular/angular.js"></script>
+    <script src="themes/material/bower_components/angular-route/angular-route.js"></script>
+    <script src="themes/material/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="themes/material/bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="themes/material/bower_components/material-design-lite/material.js"></script>
+    <script src="themes/material/bower_components/angular-material/angular-material.min.js"></script>
 
     <!--  Импорты моих angularJS скриптов. -->
-    <script src="app.js"></script>
-    <script src="clients/clients.js"></script>
-    <script src="orders/orders.js"></script>
+    <script src="themes/material/logon/logon.js"></script>
+    <script src="themes/material/app.js"></script>
+    <script src="themes/material/clients/clients.js"></script>
+    <script src="themes/material/orders/orders.js"></script>
+    <script src="themes/material/order_conversion/conversion.js"></script>
     <!--      *******      -->
-
-
-    <link rel="stylesheet" href="styles.css">
   </head>
-  <body ng-app="afxConsole">
-      <div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" ng-controller="MainCtrl">
-        <header class="header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-          <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">AFX Console</span>
+  <body>
+    <div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller="MainCtrl">
+      <!--  mdl-color--grey-100 mdl-color-text--grey-600-->
+      <header class="header mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">AFX Console</span>
+          <div class="mdl-layout-spacer"></div>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">О приложении</li>
+            <li class="mdl-menu__item">Помощь</li>
+          </ul>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="drawer-header">
+          <div class="avatar-dropdown">
+            <span>User: Admin</span>
             <div class="mdl-layout-spacer"></div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-              <label class="mdl-button mdl-js-button mdl-button--icon" for="search"><i class="material-icons">search</i></label>
-              <div class="mdl-textfield__expandable-holder">
-                <input class="mdl-textfield__input" type="text" id="search">
-                <label class="mdl-textfield__label" for="search">Enter your query...</label>
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-              <i class="material-icons">more_vert</i>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
             </button>
-            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-              <li class="mdl-menu__item">О приложении</li>
-              <li class="mdl-menu__item">Помощь</li>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item"><i class="material-icons">edit</i>Редактировать</li>
+              <li class="mdl-menu__item">Выход</li>
             </ul>
           </div>
         </header>
-        <div class="mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-          <header class="drawer-header">
-            <div class="avatar-dropdown">
-              <span>User: Admin</span>
-              <div class="mdl-layout-spacer"></div>
-              <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="material-icons" role="presentation">arrow_drop_down</i>
-                <span class="visuallyhidden">Accounts</span>
-              </button>
-              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                <li class="mdl-menu__item"><i class="material-icons">edit</i>Редактировать</li>
-                <li class="mdl-menu__item">Выход</li>
-              </ul>
-            </div>
-          </header>
-          <nav class="navigation mdl-navigation mdl-color--blue-grey-800">
-            <a class="mdl-navigation__link" ng-href="#{{'clients'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_circle</i>Клиенты</a>
-            <a class="mdl-navigation__link" ng-href="#/orders"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Активные ордера</a>
-            <a class="mdl-navigation__link" ng-href="#/help"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">trending_down</i>Котировки</a>
-            <div class="mdl-layout-spacer"></div>
-            <a class="mdl-navigation__link" ng-href="#{{'help'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Помощь</span></a>
-          </nav>
-        </div>
-
-        <main class="mdl-layout__content mdl-color--grey-100">
-
-          <div class="cards mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-              Тут может быть любое содержимое... Forex forex forex forex forex forex forex forex
-              forex forex forex forex forex forex forex forex forex...
-              Forex forex forex forex forex forex forex forex forex forex forex forex forex
-              forex forex forex forex... Forex forex forex forex forex forex forex
-              forex forex forex forex forex forex forex forex forex forex...
-
-              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-                <span class="mdl-checkbox__label">Checkbox</span>
-              </label>
-              <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" id="sample1">
-                <label class="mdl-textfield__label" for="sample1">Text...</label>
-              </div>
-              <md-button class="md-warn">Кнопка</md-button>
-              <!-- <md-input-container>
-                <label>State</label>
-                <md-select>
-                </md-select>
-              </md-input-container> -->
-
-          </div>
-
-          <!--Сюда будут вставляться views-->
-          <div ng-view></div>
-
-        </main>
+        <nav class="navigation mdl-navigation mdl-color--blue-grey-800">
+          <a class="mdl-navigation__link" ng-href="#{{'clients'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_circle</i>Клиенты</a>
+          <a class="mdl-navigation__link" ng-href="#{{'orderconversion'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Активные ордера</a>
+          <a class="mdl-navigation__link" ng-href="#{{'orders'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Активные ордера</a>
+          <a class="mdl-navigation__link" ng-href="#{{'help'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">trending_down</i>Котировки</a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" ng-href="#{{'help'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Помощь</span></a>
+        </nav>
       </div>
 
-      <script type="text/ng-template" id="help.html">
-        <div class="cards mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-            Тут может быть любое содержимое... Forex forex forex forex forex forex forex forex
-            forex forex forex forex forex forex forex forex forex...
-            Forex forex forex forex forex forex forex forex forex forex forex forex forex
-            forex forex forex forex... Forex forex forex forex forex forex forex
-            forex forex forex forex forex forex forex forex forex forex...
-
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-              <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-              <span class="mdl-checkbox__label">Checkbox</span>
-            </label>
-            <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text" id="sample1">
-              <label class="mdl-textfield__label" for="sample1">Text...</label>
-            </div>
-            <md-button class="md-warn">Кнопка</md-button>
-        </div>
-      </script>
+      <!--Сюда будут вставляться views-->
+      <main class="mdl-layout__content mdl-color--grey-100" ng-view>
+      </main>
+    </div>
+      <a href=""id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">тест</a>
   </body>
+  <style>
+  #view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+  }
+  </style>
 </html>

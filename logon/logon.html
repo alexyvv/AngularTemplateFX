@@ -2,18 +2,19 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>AFX</title>
+    <title>Alfa forex</title>
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/icon?family=Material+Icons'>
-    <!-- <link rel='stylesheet prefetch' href='http://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css'> -->
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700'>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="themes/material/styles.css">
 
-    <!-- <script src='http://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js'></script> -->
-    <link rel="stylesheet" href="../bower_components/material-design-lite/material.css">
-    <script src="../bower_components/material-design-lite/material.js"></script>
+    <link rel="stylesheet" href="themes/material/bower_components/material-design-lite/material.css">
+    <script src="themes/material/bower_components/angular/angular.js"></script>
+    <script src="themes/material/bower_components/angular-route/angular-route.js"></script>
+    <script src="themes/material/bower_components/material-design-lite/material.js"></script>
+    <script src="themes/material/logon/logon.js"></script>
   </head>
 
-  <body>
+  <body ng-app="AFXNG.Console.Logon" ng-controller="LogonCtrl">
     <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
       <main class="mdl-layout__content">
         <div class="mdl-card mdl-shadow--6dp">
@@ -23,17 +24,17 @@
           <div class="mdl-card__supporting-text">
             <form action="#">
               <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" id="username" />
+                <input class="mdl-textfield__input" type="text" id="username" ng-model="login"/>
                 <label class="mdl-textfield__label" for="username">Пользователь</label>
               </div>
               <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="password" id="userpass" />
+                <input class="mdl-textfield__input" type="password" id="userpass" ng-model="password"/>
                 <label class="mdl-textfield__label" for="userpass">Пароль</label>
               </div>
             </form>
           </div>
           <div class="mdl-card__actions mdl-card--border">
-            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Вход</button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="submit()">Вход</button>
           </div>
         </div>
       </main>

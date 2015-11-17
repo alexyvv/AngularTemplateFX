@@ -7,6 +7,27 @@ html, body {
   height: 48px;
   border-radius: 24px;
 }
+
+.mdl-data-table .online {
+    background-color: #DCEDC8;
+}
+
+.mdl-data-table .online:hover {
+    background-color: #C5E1A5;
+}
+
+.mdl-data-table .unvalid {
+    background-color: #E0E0E0;
+}
+.mdl-data-table .unvalid:hover {
+    background-color: #E0E0E0;
+}
+/*table {
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+}*/
+
 .layout .header .mdl-textfield {
   padding-top: 27px;
 }
@@ -118,9 +139,9 @@ _:-ms-input-placeholder, :root .graph {
   height: 32px;
 }
 .cards .mdl-card__title.mdl-card__title {
-  color: white;
-  font-size: 24px;
-  font-weight: 400;
+  color: gray;
+  font-size: 15px;
+  font-weight: 200;
 }
 .cards ul {
   padding: 0;

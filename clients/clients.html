@@ -1,46 +1,77 @@
-<div>
-  <div class="mdl-grid content" ng-controller="ClientsCtrl">
-    <div class="cards mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-        Тут может быть любое содержимое... Forex forex forex forex forex forex forex forex
-        forex forex forex forex forex forex forex forex forex...
-        Forex forex forex forex forex forex forex forex forex forex forex forex forex
-        forex forex forex forex... Forex forex forex forex forex forex forex
-        forex forex forex forex forex forex forex forex forex forex...
-        <md-button class="md-warn">Кнопка</md-button>
-        <md-input-container>
-        <label>State</label>
-        <md-select ng-model="ctrl.userState">
-          <md-option>
-            1111
-          </md-option>
-          <md-option>
-            2222
-          </md-option>
-          <md-option>
-            3333
+<div class="mdl-grid content">
+  <!-- Карточка с настройками поиска пользователей. -->
+  <div class="mdl-card mdl-color--white mdl-shadow--3dp mdl-cell mdl-cell--12-col mdl-grid" width="100%">
+      <div class="mdl-card__title">
+        <div class="mdl-card__title-text">Параметры поиска пользователя</div>
+      </div>
+      <div class="mdl-cell mdl-cell--8-col">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="input_like" ng-model="filter.like" ng-change="">
+          <label class="mdl-textfield__label" for="input_like">Поиск...</label>
+        </div>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col">
+        <div class="mdl-textfield mdl-js-textfield">
+           <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input_limit" ng-model="filter.limit" ng-change="">
+           <label class="mdl-textfield__label" for="input_limit">Limit...</label>
+           <span class="mdl-textfield__error">Введите число.</span>
+       </div>
+      </div>
+      <md-input-container class="mdl-cell mdl-cell-4-col">
+        <label>Valid</label>
+        <md-select ng-model="selectValidModel.repeatSelect" ng-change="onFilterChanged()">
+          <md-option ng-repeat="valid in selectValidModel.availableOptions" value="{{valid.id}}">
+            {{valid.name}}
           </md-option>
         </md-select>
       </md-input-container>
 
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-          <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
-          <span class="mdl-checkbox__label">Checkbox</span>
-        </label>
-    </div>
+      <md-input-container class="mdl-cell mdl-cell--4-col">
+        <label>Onlie</label>
+        <md-select ng-model="selectOnlineModel.repeatSelect" ng-change="onFilterChanged()">
+          <md-option ng-repeat="online in selectOnlineModel.availableOptions" value="{{online.id}}">
+            {{online.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
 
-    <div class="cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-      <div class="updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-          <h2 class="mdl-card__title-text">AFX test</h2>
-        </div>
-        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-          Test text for форекс. Forex forex forex forex forex forex forex forex forex forex forex forex forex forex forex forex forex...
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-          <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Жмак</a>
-        </div>
+      <md-input-container class="mdl-cell mdl-cell--4-col">
+        <label>Crypto</label>
+        <md-select ng-model="selectCryptoModel.repeatSelect" ng-change="onFilterChanged()">
+          <md-option ng-repeat="crypto in selectCryptoModel.availableOptions" value="{{crypto.id}}">
+            {{crypto.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <!--Кнопка поиска. -->
+      <div class="mdl-card__actions"> <!--mdl-card--border -->
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="onFilterChanged()">поиск</a>
       </div>
-      <div class="separator mdl-cell--1-col"></div>
-    </div>
+  </div>
+  <div class="mdl-shadow--3dp mdl-cell mdl-cell--12-col">
+    <table class="mdl-data-table mdl-js-data-table" width="100%">
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">ID</th>
+        <th class="mdl-data-table__cell--non-numeric">Логин</th>
+        <th class="mdl-data-table__cell--non-numeric">ФИО</th>
+        <th class="mdl-data-table__cell--non-numeric">Компания</th>
+        <th class="mdl-data-table__cell--non-numeric">Email</th>
+        <th class="mdl-data-table__cell--non-numeric">Телефон</th>
+        <th class="mdl-data-table__cell--non-numeric">ForexID</th>
+        <th class="mdl-data-table__cell--non-numeric">Тип</th>
+      </tr>
+
+      <tr ng-repeat="c in clients track by c.id" class={{c.className}}>
+        <td class="mdl-data-table__cell--non-numeric">{{::c.id}}</td>
+        <td class="mdl-data-table__cell--non-numeric"><a href="?page=clientinfo&login={{c.login}}">{{c.login}}</a></td>
+        <td class="mdl-data-table__cell--non-numeric">{{c.surname}} {{c.name}} {{c.secondname}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{c.company}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{c.email}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{c.phone}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{c.forexid}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{c.admin}}</td>
+      </tr>
+    </table>
   </div>
 </div>

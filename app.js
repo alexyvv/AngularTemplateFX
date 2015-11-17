@@ -7,32 +7,39 @@ var app = angular.module('afxConsole', [
   'ngMaterial',
   'ngRoute',
   'afxConsole.clients',
+  'afxConsole.orderConversion',
   'afxConsole.orders'
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
-  $routeProvider
-  .when('/orders', {
-    templateUrl: 'orders/orders.html',
-    controller: 'ClientsCtrl'
-  })
-  .when('/clients', {
-    templateUrl: 'clients/clients.html',
-    controller: 'ClientsCtrl'
-  })
-  .when('/help', {
-    templateUrl: 'help.html',
-    controller: 'ClientsCtrl'
-  })
-  .otherwise({redirectTo: 'clients'});
+  $routeProvider.otherwise({redirectTo: '/clients'});
 }])
 
-.controller('MainCtrl', function($scope, $rootScope) {
+.config(function($routeProvider, $locationProvider) {
+  $routeProvider
+  .when('/clients', {
+    templateUrl: 'themes/material/clients/clients.html',
+    controller: 'ClientsCtrl'
+  })
+  .when('/orderconversion', {
+    templateUrl: 'themes/material/order_conversion/conversion.html',
+    controller: 'OrderConversionCtrl'
+  })
+  .when('/clientinfo', {
+    templateUrl: 'themes/material/clietninfo/clientinfo.html',
+    controller: 'ClientInfoCtrl'
+  })
+  .when('/orders', {
+    templateUrl: 'themes/material/orders/orders.html',
+    controller: 'ClientsCtrl'
+  });
+})
+.controller('MainCtrl', function($scope) {
 
   $scope.menu = {};
   $scope.menu.pages = [
-    {"url": "/clietns", "discription":"Клиенты"},
-    {"url": "/orders", "discription":"Активные ордера"}
+    {"url": "themes/material/clients/clients", "discription":"Клиенты"},
+    {"url": "themes/material/orders/orders", "discription":"Активные ордера"}
   ];
 
   $scope.menu.isPageSelected = function(page) {
@@ -42,12 +49,28 @@ app.config(['$routeProvider', function($routeProvider) {
   $scope.menu.toggleSelectPage = function(page) {
     $scope.menu.currentPage = page;
   };
-
 });
-app.run(function ($rootScope,$timeout) {
-        $rootScope.$on('$viewContentLoaded', function(){
-          $timeout(function() {
-            componentHandler.upgradeAllRegistered();
-          })
-        })
-      });
+
+app.directive('datetimez', function() {
+    return {
+        restrict: 'A',
+        require : 'ngModel',
+        link: function(scope, element, attrs, ngModelCtrl) {
+          element.datetimepicker({
+            dateFormat:'dd/MM/yyyy hh:mm:ss',
+            language: 'pt-BR'
+          }).on('changeDate', function(e) {
+            ngModelCtrl.$setViewValue(e.date);
+            scope.$apply();
+          });
+        }
+    };
+});
+
+app.run(function ($rootScope, $timeout) {
+    $rootScope.$on('$viewContentLoaded', function() {
+      $timeout(function() {
+        componentHandler.upgradeAllRegistered();
+      })
+    })
+});

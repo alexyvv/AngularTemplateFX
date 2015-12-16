@@ -1,58 +1,68 @@
 <div class="mdl-grid content">
   <!-- Карточка с настройками поиска пользователей. -->
   <div class="mdl-card mdl-color--white mdl-shadow--3dp mdl-cell mdl-cell--12-col mdl-grid" width="100%">
-      <div class="mdl-card__title">
+      <div class="mdl-card__title mdl-cell mdl-cell--12-col">
         <div class="mdl-card__title-text">Параметры поиска пользователя</div>
       </div>
-      <div class="mdl-cell mdl-cell--8-col">
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="input_like" ng-model="filter.like" ng-change="">
-          <label class="mdl-textfield__label" for="input_like">Поиск...</label>
-        </div>
-      </div>
       <div class="mdl-cell mdl-cell--4-col">
-        <div class="mdl-textfield mdl-js-textfield">
-           <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input_limit" ng-model="filter.limit" ng-change="">
-           <label class="mdl-textfield__label" for="input_limit">Limit...</label>
-           <span class="mdl-textfield__error">Введите число.</span>
-       </div>
+        <table>
+          <tr>
+            <td class="table-params">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="input_like" ng-model="filter.like" my-enter="onFilterChanged()">
+                <label class="mdl-textfield__label" for="input_like">Поиск...</label>
+              </div>
+            </td>
+            <td class="table-params">
+              <md-input-container>
+                <label>Доступ</label>
+                <md-select ng-model="selectValidModel.repeatSelect" ng-change="onFilterChanged()">
+                  <md-option ng-repeat="valid in selectValidModel.availableOptions" value="{{valid.id}}">
+                    {{valid.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td class="table-params">
+              <md-input-container>
+                <label>Статус подключения</label>
+                <md-select ng-model="selectOnlineModel.repeatSelect" ng-change="onFilterChanged()">
+                  <md-option ng-repeat="online in selectOnlineModel.availableOptions" value="{{online.id}}">
+                    {{online.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td class="table-params">
+              <md-input-container>
+                <label>Крипто клиент</label>
+                <md-select ng-model="selectCryptoModel.repeatSelect" ng-change="onFilterChanged()">
+                  <md-option ng-repeat="crypto in selectCryptoModel.availableOptions" value="{{crypto.id}}">
+                    {{crypto.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td class="table-params">
+              <label for="limit_input">Макс. число строк:</label>
+              <div id="limit_input" class="mdl-textfield mdl-js-textfield">
+                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input_limit" ng-model="filter.limit" my-enter="onFilterChanged()">
+                 <label class="mdl-textfield__label" for="input_limit">введите число...</label>
+                 <span class="mdl-textfield__error">Введите число.</span>
+             </div>
+            </td>
+          </tr>
+        </table>
       </div>
-      <md-input-container class="mdl-cell mdl-cell-4-col">
-        <label>Valid</label>
-        <md-select ng-model="selectValidModel.repeatSelect" ng-change="onFilterChanged()">
-          <md-option ng-repeat="valid in selectValidModel.availableOptions" value="{{valid.id}}">
-            {{valid.name}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-
-      <md-input-container class="mdl-cell mdl-cell--4-col">
-        <label>Onlie</label>
-        <md-select ng-model="selectOnlineModel.repeatSelect" ng-change="onFilterChanged()">
-          <md-option ng-repeat="online in selectOnlineModel.availableOptions" value="{{online.id}}">
-            {{online.name}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-
-      <md-input-container class="mdl-cell mdl-cell--4-col">
-        <label>Crypto</label>
-        <md-select ng-model="selectCryptoModel.repeatSelect" ng-change="onFilterChanged()">
-          <md-option ng-repeat="crypto in selectCryptoModel.availableOptions" value="{{crypto.id}}">
-            {{crypto.name}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-
       <!--Кнопка поиска. -->
-      <div class="mdl-card__actions"> <!--mdl-card--border -->
+      <div class="mdl-card__actions">
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="onFilterChanged()">поиск</a>
       </div>
   </div>
   <div class="mdl-shadow--3dp mdl-cell mdl-cell--12-col">
     <table class="mdl-data-table mdl-js-data-table" width="100%">
       <tr>
-        <th class="mdl-data-table__cell--non-numeric">ID</th>
+        <th>ID</th>
         <th class="mdl-data-table__cell--non-numeric">Логин</th>
         <th class="mdl-data-table__cell--non-numeric">ФИО</th>
         <th class="mdl-data-table__cell--non-numeric">Компания</th>
@@ -62,15 +72,15 @@
         <th class="mdl-data-table__cell--non-numeric">Тип</th>
       </tr>
 
-      <tr ng-repeat="c in clients track by c.id" class={{c.className}}>
-        <td class="mdl-data-table__cell--non-numeric">{{::c.id}}</td>
-        <td class="mdl-data-table__cell--non-numeric"><a href="?page=clientinfo&login={{c.login}}">{{c.login}}</a></td>
-        <td class="mdl-data-table__cell--non-numeric">{{c.surname}} {{c.name}} {{c.secondname}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{c.company}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{c.email}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{c.phone}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{c.forexid}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{c.admin}}</td>
+      <tr ng-repeat="client in clients track by client.login" class={{client.className}}>
+        <td>{{client.id}}</td>
+        <td class="mdl-data-table__cell--non-numeric"><a ng-href="#{{'clientinfo/' + client.login}}">{{client.login}}</a></td>
+        <td class="mdl-data-table__cell--non-numeric">{{client.surname}} {{client.name}} {{client.secondname}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{client.company}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{client.email}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{client.phone}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{client.forexid}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{client.admin}}</td>
       </tr>
     </table>
   </div>

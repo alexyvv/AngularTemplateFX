@@ -1,0 +1,94 @@
+<!-- <div class="mdl-grid content">
+
+</div> -->
+
+<!-- Simple header with fixed tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Информация о пользователе: {{selectedUser}}</span>
+    </div>
+    <!-- Tabs -->
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Счета</a>
+      <a href="#fixed-tab-2" class="mdl-layout__tab">Сертификаты</a>
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+      <div class="page-content">
+        <!--СЧЕТА ----------------------------------------------->
+        <div class="mdl-grid content">
+
+          <!-- Карточка с выбором филиала. -->
+          <div class="mdl-card mdl-color--white mdl-shadow--3dp mdl-cell mdl-cell--12-col mdl-grid" width="100%">
+            <div class="mdl-card__title mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__title-text">Счета пользователя</div>
+            </div>
+
+            <!-- Выбор филиала -->
+            <md-input-container class="mdl-cell mdl-cell-3-col">
+              <label>Филиал</label>
+              <md-select ng-model="currentFilial" ng-change="refreshAccList()">
+                <md-option ng-repeat="branch in branchesList" value="{{branch.name}}">
+                  {{branch.name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+          </div>
+
+          <div class="mdl-shadow--3dp mdl-cell mdl-cell--12-col">
+            <table class="mdl-data-table mdl-js-data-table" width="100%">
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Номер счета</th>
+                <th class="mdl-data-table__cell--non-numeric">Филиал</th>
+                <th class="mdl-data-table__cell--non-numeric">Валюта</th>
+                <th class="mdl-data-table__cell--non-numeric">Статус</th>
+                <th class="mdl-data-table__cell--non-numeric">Остаток</th>
+              </tr>
+              <!-- track by conv.idConversion -->
+              <tr ng-repeat="account in accountList track by account.accountNumber">
+                <td class="mdl-data-table__cell--non-numeric">{{account.accountNumber}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{account.branch}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{account.currency}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{account.status}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{account.rest}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!------------------------------------------------------->
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+      <div class="page-content">
+        <!--СЕРТИФИКАТЫ ----------------------------------------------->
+        <div class="mdl-grid content">
+          <div class="mdl-shadow--3dp mdl-cell mdl-cell--12-col">
+            <table class="mdl-data-table mdl-js-data-table" width="100%">
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Серийный номер</th>
+                <th class="mdl-data-table__cell--non-numeric">Действителен с</th>
+                <th class="mdl-data-table__cell--non-numeric">Действителен по</th>
+                <th class="mdl-data-table__cell--non-numeric">Субъект</th>
+                <th class="mdl-data-table__cell--non-numeric">Издатель</th>
+              </tr>
+              <!-- track by conv.idConversion -->
+              <tr ng-repeat="cert in certificates">
+                <td class="mdl-data-table__cell--non-numeric">{{cert.serialNumber}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{cert.from}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{cert.till}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{cert.subject}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{cert.issuer}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!------------------------------------------------------------->
+      </div>
+    </section>
+  </main>
+</div>

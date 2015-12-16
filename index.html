@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Alfa forex</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Шрифты -->
+    <link rel="stylesheet" href="themes/material/bower_components/roboto/roboto.css">
+    <link rel="stylesheet" href="themes/material/bower_components/material_icons/icons.css">
+    <!------------->
 
     <link rel="stylesheet" href="themes/material/bower_components/material-design-lite/material.css">
     <link rel="stylesheet" href="themes/material/bower_components/angular-material/angular-material.css">
@@ -26,28 +28,25 @@
     <script src="themes/material/logon/logon.js"></script>
     <script src="themes/material/app.js"></script>
     <script src="themes/material/clients/clients.js"></script>
-    <script src="themes/material/orders/orders.js"></script>
-    <script src="themes/material/order_conversion/conversion.js"></script>
+    <script src="themes/material/conversion/conversion.js"></script>
+    <script src="themes/material/order_conversion/orderconversion.js"></script>
+    <script src="themes/material/clientinfo/clientinfo.js"></script>
     <!--      *******      -->
   </head>
   <body>
-    <div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller="MainCtrl">
-      <!--  mdl-color--grey-100 mdl-color-text--grey-600-->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller="MainCtrl">
       <header class="header mdl-layout__header">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title">AFX Console</span>
           <div class="mdl-layout-spacer"></div>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="material-icons">more_vert</i>
+          <span class="text-app-header">  Пользователь: {{user.login}}</span>
+          <button ng-click="exitFromApp()" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons">&#xE879;</i>
           </button>
-          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">О приложении</li>
-            <li class="mdl-menu__item">Помощь</li>
-          </ul>
         </div>
       </header>
-      <div class="mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-        <header class="drawer-header">
+      <div class="layout mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <!-- <header class="drawer-header">
           <div class="avatar-dropdown">
             <span>User: Admin</span>
             <div class="mdl-layout-spacer"></div>
@@ -60,32 +59,19 @@
               <li class="mdl-menu__item">Выход</li>
             </ul>
           </div>
-        </header>
+        </header> -->
         <nav class="navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link" ng-href="#{{'clients'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_circle</i>Клиенты</a>
-          <a class="mdl-navigation__link" ng-href="#{{'orderconversion'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Активные ордера</a>
-          <a class="mdl-navigation__link" ng-href="#{{'orders'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Активные ордера</a>
-          <a class="mdl-navigation__link" ng-href="#{{'help'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">trending_down</i>Котировки</a>
+          <a class="mdl-navigation__link" ng-href="#{{'conversion'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Заявки конвертации</a>
+          <a class="mdl-navigation__link" ng-href="#{{'orderconversion'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Отложенные заявки</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" ng-href="#{{'help'}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Помощь</span></a>
         </nav>
       </div>
 
-      <!--Сюда будут вставляться views-->
+      <!--Здесь будут вставляться views-->
       <main class="mdl-layout__content mdl-color--grey-100" ng-view>
       </main>
     </div>
-      <a href=""id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">тест</a>
   </body>
-  <style>
-  #view-source {
-    position: fixed;
-    display: block;
-    right: 0;
-    bottom: 0;
-    margin-right: 40px;
-    margin-bottom: 40px;
-    z-index: 900;
-  }
-  </style>
 </html>

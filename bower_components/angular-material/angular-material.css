@@ -8113,8 +8113,9 @@ md-select {
   min-width: 64px;
   min-height: 26px;
   -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1; }
+  -ms-flex-positive: 1;
+  /*flex-grow: 1;*/
+}
   .md-select-value *:first-child {
     -webkit-flex: 1;
         -ms-flex: 1;

@@ -1,6 +1,6 @@
 
 html, body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-family: 'Roboto', 'Helvetica', 'Calibri', 'Arial', sans-serif;
 }
 .avatar {
   width: 48px;
@@ -27,6 +27,29 @@ html, body {
   margin-left: 20px;
   margin-right: 20px;
 }*/
+
+.table-params {
+  padding: 10px;
+}
+
+#limit_input {
+  width: 100px;
+}
+
+.text-app-header {
+  display: block;
+  position: relative;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  box-sizing: border-box;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 
 .layout .header .mdl-textfield {
   padding-top: 27px;
@@ -89,7 +112,7 @@ html, body {
 }
 
 .content {
-  max-width: 1080px;
+  max-width: 1180px;
 }
 
 .charts {
@@ -180,4 +203,17 @@ _:-ms-input-placeholder, :root .graph {
   display: flex;
   box-sizing: border-box;
   align-items: center;
+}
+
+.dialogdemoBasicUsage #popupContainer {
+  position: relative;
+}
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px;
+}
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px;
 }

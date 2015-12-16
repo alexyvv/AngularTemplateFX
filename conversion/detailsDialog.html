@@ -1,0 +1,113 @@
+<md-dialog aria-label="Конвертация"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4>Информация по конвертации</h4>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">&#xE5CD;</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+        <table class="mdl-data-table mdl-js-data-table" width="100%">
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Филиал:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.branch}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Клиент:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.client}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Менеджер:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.manager}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Номер поручения:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.nbp}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Дата заявки:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.dateTimeConv}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Статус заявки:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.status}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Сумма списания:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.chargeOffAmount}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Валюта:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.chargeOffCur}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Счет списания:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.chargeOffAccountNum}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Сумма зачисления:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.chargingAmount}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Валюта зачиления:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.chargingCur}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Счет зачисления:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.chargingAccountNum}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Курс сделки:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.rate}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Тариф %:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.feePercent}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Сумма комиссии:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.feeAmount}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Валюта комиссии:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.feeCur}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Счет комиссии:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.feeAccountNum}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Номер заявки:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.idConversion}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Номер сделки:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.dealarcid}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Курс Альфа-Форекс:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.alfaRate}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Примечание:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.rejectreason}}</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">Номер ордера:</td>
+            <td class="mdl-data-table__cell--non-numeric">{{conv.orderId}}</td>
+          </tr>
+        </table>
+      </div>
+    </md-dialog-content>
+  </form>
+  <md-dialog-actions layout="row">
+    <md-button ng-click="cancel()" style="margin-right:20px;">
+      Закрыть
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

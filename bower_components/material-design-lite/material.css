@@ -4650,13 +4650,16 @@ input.mdl-button[type="submit"] {
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-collapse: collapse;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   font-size: 13px;
-  background-color: rgb(255,255,255); }
-  .mdl-data-table thead {
-    padding-bottom: 3px; }
+  background-color: rgb(255,255,255);
+}
+.mdl-data-table thead {
+  padding-bottom: 3px;
+}
     .mdl-data-table thead .mdl-data-table__select {
-      margin-top: 0; }
+      margin-top: 0;
+    }
   .mdl-data-table tbody tr {
     position: relative;
     height: 48px;
@@ -4665,18 +4668,24 @@ input.mdl-button[type="submit"] {
     -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-transition-property: background-color;
-            transition-property: background-color; }
+            transition-property: background-color;
+          }
     .mdl-data-table tbody tr.is-selected {
-      background-color: #e0e0e0; }
+      background-color: #e0e0e0;
+    }
     .mdl-data-table tbody tr:hover {
-      background-color: #eeeeee; }
+      background-color: #eeeeee;
+    }
   .mdl-data-table td, .mdl-data-table th {
     padding: 0 18px 0 18px;
-    text-align: right; }
+    text-align: right;
+  }
     .mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
-      padding-left: 24px; }
+      padding-left: 24px;
+    }
     .mdl-data-table td:last-of-type, .mdl-data-table th:last-of-type {
-      padding-right: 24px; }
+      padding-right: 24px;
+    }
   .mdl-data-table td {
     position: relative;
     vertical-align: top;
@@ -4684,11 +4693,13 @@ input.mdl-button[type="submit"] {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     padding-top: 12px;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+  }
     .mdl-data-table td .mdl-data-table__select {
       vertical-align: top;
       position: absolute;
-      left: 24px; }
+      left: 24px;
+    }
   .mdl-data-table th {
     position: relative;
     vertical-align: bottom;
@@ -4701,17 +4712,21 @@ input.mdl-button[type="submit"] {
     font-size: 12px;
     color: rgba(0, 0, 0, 0.54);
     padding-bottom: 8px;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+  }
     .mdl-data-table th .mdl-data-table__select {
       position: absolute;
       bottom: 8px;
-      left: 24px; }
+      left: 24px;
+    }
 
 .mdl-data-table__select {
-  width: 16px; }
+  width: 16px;
+}
 
 .mdl-data-table__cell--non-numeric.mdl-data-table__cell--non-numeric {
-  text-align: left; }
+  text-align: left;
+}
 
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
@@ -6484,11 +6499,13 @@ input.mdl-button[type="submit"] {
       @media screen and (max-width: 1024px) {
         .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
           padding: 16px 16px; } }
+
       .mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
         background-color: rgb(224,224,224); }
       .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
         background-color: rgb(0,0,0);
         color: rgb(224,224,224); }
+
   @media screen and (min-width: 1025px) {
     .mdl-layout--fixed-drawer > .mdl-layout__drawer {
       -webkit-transform: translateX(0);
@@ -9672,7 +9689,8 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
     padding: 8px; }
   .mdl-cell {
     margin: 8px;
-    width: calc(33.3333333333% - 16px); }
+    /*width: calc(33.3333333333% - 16px); */
+  }
     .mdl-grid--no-spacing > .mdl-cell {
       width: 33.3333333333%; }
   .mdl-cell--hide-desktop {
@@ -9697,7 +9715,8 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
       width: 25%; }
   .mdl-cell--4-col,
   .mdl-cell--4-col-desktop.mdl-cell--4-col-desktop {
-    width: calc(33.3333333333% - 16px); }
+    /*width: calc(33.3333333333% - 16px); */
+  }
     .mdl-grid--no-spacing > .mdl-cell--4-col, .mdl-grid--no-spacing >
     .mdl-cell--4-col-desktop.mdl-cell--4-col-desktop {
       width: 33.3333333333%; }

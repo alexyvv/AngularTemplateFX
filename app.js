@@ -7,8 +7,9 @@ var app = angular.module('afxConsole', [
   'ngMaterial',
   'ngRoute',
   'afxConsole.clients',
+  'afxConsole.сonversion',
   'afxConsole.orderConversion',
-  'afxConsole.orders'
+  'afxConsole.clietninfo'
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -21,51 +22,84 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'themes/material/clients/clients.html',
     controller: 'ClientsCtrl'
   })
+  .when('/conversion', {
+    templateUrl: 'themes/material/conversion/conversion.html',
+    controller: 'ConversionCtrl'
+  })
   .when('/orderconversion', {
-    templateUrl: 'themes/material/order_conversion/conversion.html',
+    templateUrl: 'themes/material/order_conversion/orderconversion.html',
     controller: 'OrderConversionCtrl'
   })
-  .when('/clientinfo', {
-    templateUrl: 'themes/material/clietninfo/clientinfo.html',
+  .when('/clientinfo/:userLogin', {
+    templateUrl: 'themes/material/clientinfo/clientinfo.html',
     controller: 'ClientInfoCtrl'
-  })
-  .when('/orders', {
-    templateUrl: 'themes/material/orders/orders.html',
-    controller: 'ClientsCtrl'
   });
 })
-.controller('MainCtrl', function($scope) {
+.controller('MainCtrl', function($scope, $rootScope, $window, $http) {
 
-  $scope.menu = {};
-  $scope.menu.pages = [
-    {"url": "themes/material/clients/clients", "discription":"Клиенты"},
-    {"url": "themes/material/orders/orders", "discription":"Активные ордера"}
-  ];
+  ($scope.exitFromApp = function() {
+    var req = 'resource/context/logout';
+		$http.get(req).success(function() {
+      $window.location.reload();
+		});
+  });
 
-  $scope.menu.isPageSelected = function(page) {
-    return ($scope.menu.currentPage === page);
-  };
+  ($scope.getContext = function() {
 
-  $scope.menu.toggleSelectPage = function(page) {
-    $scope.menu.currentPage = page;
-  };
+    var req = 'resource/context/user'
+    $scope.loadData(req, function(data) {
+      $rootScope.user = data;
+    });
+  });
+
+  //////////////////////////// ЗАГРУЗКА ДАННЫХ/////////////////////////////
+
+	/** Получить данные из REST(method POST) сервиса.
+		*
+		* req - пусть к ресурсу.
+		* f - замыкание (лямбда), реализует сохарнение получаенных данных.
+	 	*/
+	($scope.loadData = function(req, f) {
+
+		console.log("loadData req=" + req);
+		$http.post(req).success(f);
+	});
+
+  ///////////////////////////////////////////////
+
+  $scope.getContext();
+
 });
 
-app.directive('datetimez', function() {
-    return {
-        restrict: 'A',
-        require : 'ngModel',
-        link: function(scope, element, attrs, ngModelCtrl) {
-          element.datetimepicker({
-            dateFormat:'dd/MM/yyyy hh:mm:ss',
-            language: 'pt-BR'
-          }).on('changeDate', function(e) {
-            ngModelCtrl.$setViewValue(e.date);
-            scope.$apply();
-          });
-        }
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
     };
 });
+
+// app.directive('datetimez', function() {
+//     return {
+//         restrict: 'A',
+//         require : 'ngModel',
+//         link: function(scope, element, attrs, ngModelCtrl) {
+//           element.datetimepicker({
+//             dateFormat:'dd/MM/yyyy hh:mm:ss',
+//             language: 'pt-BR'
+//           }).on('changeDate', function(e) {
+//             ngModelCtrl.$setViewValue(e.date);
+//             scope.$apply();
+//           });
+//         }
+//     };
+// });
 
 app.run(function ($rootScope, $timeout) {
     $rootScope.$on('$viewContentLoaded', function() {

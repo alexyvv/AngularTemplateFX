@@ -1,0 +1,89 @@
+<div class="mdl-grid content">
+
+  <!-- Карточка с настройками поиска заявки на конвертацию. -->
+  <div class="mdl-card mdl-color--white mdl-shadow--3dp mdl-cell mdl-cell--12-col mdl-grid" width="100%">
+      <div class="mdl-card__title mdl-cell mdl-cell--12-col">
+          <div class="mdl-card__title-text">Поиск заявок на конвертацию</div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col">
+        <table>
+          <tr>
+            <td class="table-params">
+              <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="input_like" ng-model="loginLike" my-enter="onFilterChanged()">
+                  <label class="mdl-textfield__label" for="input_like">Логин пользователя...</label>
+              </div>
+            </td>
+            <td class="table-params">
+              <md-input-container>
+                <label>Валюта списания</label>
+                <md-select ng-model="currencyFrom" ng-change="onFilterChanged()">
+                  <md-option ng-repeat="cFrom in currencyList" value="{{cFrom.currencyName}}">
+                    {{cFrom.currencyName}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+            <td class="table-params">
+              <md-input-container>
+                <label>Валюта зачисления</label>
+                <md-select ng-model="currencyTo" ng-change="onFilterChanged()">
+                  <md-option ng-repeat="cTo in currencyList" value="{{cTo.currencyName}}">
+                    {{cTo.currencyName}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="mdl-cell mdl-cell--7-col">
+        <table>
+          <tr>
+            <td>
+              <label>Дата выполнения:</label>
+            </td>
+            <td>
+              <md-datepicker ng-model="fromDate" md-placeholder="От" ng-change="onFilterChanged()"></md-datepicker>
+            </td>
+            <td>
+              <md-datepicker ng-model="toDate" md-placeholder="До" ng-change="onFilterChanged()"></md-datepicker>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!--Кнопка поиска. -->
+      <div class="mdl-card__actions">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="onFilterChanged()">поиск</a>
+      </div>
+  </div>
+  <div class="mdl-shadow--3dp mdl-cell mdl-cell--12-col">
+    <table class="mdl-data-table mdl-js-data-table" width="100%">
+      <tr>
+        <th>№ заявки</th>
+        <th class="mdl-data-table__cell--non-numeric">Клиент</th>
+        <th class="mdl-data-table__cell--non-numeric">Дата заявки</th>
+        <th class="mdl-data-table__cell--non-numeric">Статус заявки</th>
+        <th>Сума списания</th>
+        <th class="mdl-data-table__cell--non-numeric">Валюта</th>
+        <th>Сумма зачисления</th>
+        <th class="mdl-data-table__cell--non-numeric">Валюта зачисления</th>
+        <th>Курс сделки</th>
+      </tr>
+
+      <tr ng-repeat="conv in conversionList track by conv.idConversion">
+        <td><a href="" ng-click="showDetailsDialog($event, conv)">{{conv.idConversion}}</a></td>
+        <td class="mdl-data-table__cell--non-numeric">{{conv.client}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{conv.dateTimeConv}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{conv.status}}</td>
+        <td>{{conv.chargeOffAmount}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{conv.chargeOffCur}}</td>
+        <td>{{conv.chargingAmount}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{conv.chargingCur}}</td>
+        <td>{{conv.rate}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
